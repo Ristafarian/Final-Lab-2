@@ -5,7 +5,10 @@ import os.path
 
 
 class Logic(QMainWindow, Ui_MainWindow):
-    def __init__(self):
+    def __init__(self) -> None:
+        """
+        Class initialization.
+        """
         super().__init__()
         self.setupUi(self)
         self.reset()
@@ -14,7 +17,10 @@ class Logic(QMainWindow, Ui_MainWindow):
         self.button_enter.clicked.connect(lambda: self.enter())
         self.button_reset.clicked.connect(lambda: self.reset())
 
-    def submit(self):
+    def submit(self) -> None:
+        """
+        Submit name and # tests.
+        """
         try:
             name = self.input_name.text()
             number_tests = int(self.input_tests.text())
@@ -63,7 +69,10 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_submit.setText('Please enter valid name. Please enter # tests (1-4).')
             self.label_submit.setStyleSheet('color: red; font-weight: bold;')
 
-    def enter(self):
+    def enter(self) -> None:
+        """
+        Enter test scores into data file and calculate grade.
+        """
         try:
             self.label_tests.clear()
             path = './data.csv'
@@ -97,6 +106,9 @@ class Logic(QMainWindow, Ui_MainWindow):
                     with open('data.csv', 'a', newline='') as data:
                         content = csv.writer(data)
                         content.writerow(score_list)
+                    self.reset()
+                    self.label_submit.setText('Test score(s) entered!')
+                    self.label_submit.setStyleSheet('color: blue; font-weight: bold;')
                     return
                 else:
                     raise
@@ -113,6 +125,9 @@ class Logic(QMainWindow, Ui_MainWindow):
                     with open('data.csv', 'a', newline='') as data:
                         content = csv.writer(data)
                         content.writerow(score_list)
+                    self.reset()
+                    self.label_submit.setText('Test score(s) entered!')
+                    self.label_submit.setStyleSheet('color: blue; font-weight: bold;')
                     return
                 else:
                     raise
@@ -128,6 +143,9 @@ class Logic(QMainWindow, Ui_MainWindow):
                     with open('data.csv', 'a', newline='') as data:
                         content = csv.writer(data)
                         content.writerow(score_list)
+                    self.reset()
+                    self.label_submit.setText('Test score(s) entered!')
+                    self.label_submit.setStyleSheet('color: blue; font-weight: bold;')
                     return
                 else:
                     raise
@@ -142,6 +160,9 @@ class Logic(QMainWindow, Ui_MainWindow):
                     with open('data.csv', 'a', newline='') as data:
                         content = csv.writer(data)
                         content.writerow(score_list)
+                    self.reset()
+                    self.label_submit.setText('Test score(s) entered!')
+                    self.label_submit.setStyleSheet('color: blue; font-weight: bold;')
                     return
                 else:
                     raise
@@ -163,7 +184,10 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_tests.setText('Please enter valid scores (0-100)')
             self.label_tests.setStyleSheet('color: red; font-size: 10; font-weight: bold;')
 
-    def reset(self):
+    def reset(self) -> None:
+        """
+        Reset to defaults.
+        """
         self.setFixedWidth(180)
         self.setFixedHeight(300)
         self.input_name.show()
